@@ -1,9 +1,10 @@
+package utils;
 import java.io.*;
 
-public class ConfigFileReader {
+public class InputFileReader {
 
-    public static void printConfigFile(){
-        File filepath = new File("src/resource/config.txt");
+    public static void printInputFile(){
+        File filepath = new File("src/resource/input.txt");
 
             try(BufferedReader reader = new BufferedReader(new FileReader(filepath))){
                 

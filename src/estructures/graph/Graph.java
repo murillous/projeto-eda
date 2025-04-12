@@ -1,4 +1,4 @@
-package graph;
+package estructures.graph;
 
 public class Graph {
     
@@ -23,7 +23,6 @@ public class Graph {
 
     public void viewGraph(){
         for(int i = 0; i < vertices; i++){
-            System.out.print("V" + i + " ");
             for(int j = 0; j < vertices; j++){
                 System.out.print(matrix[i][j] + " ");
             }
