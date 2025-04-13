@@ -6,9 +6,9 @@ public class InputFileReader {
     public static void printInputFile(){
         File filepath = new File("src/resource/input.txt");
 
-            try(BufferedReader reader = new BufferedReader(new FileReader(filepath))){
-                
+            try(BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
                 String line;
+
                 while((line = reader.readLine()) != null){
                     System.out.println(line);
                 }     
