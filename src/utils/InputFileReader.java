@@ -20,4 +20,24 @@ public class InputFileReader {
                 System.out.println("Algo deu errado");
             }
         }
+
+    public static void readSampleFile(String filePath) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            while((line = bufferedReader.readLine()) != null){
+                // Will just skip invalid lines
+                if (!line.contains(",")) continue;
+
+                String[] fields = line.split(",");
+                String firstVertex = fields[0];
+                String secondVertex = fields[1];
+
+                System.out.println(firstVertex + "\t" + secondVertex + "\t");
+
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR while trying to read the file: \n" + e.getMessage());
+        }
+    }
 }

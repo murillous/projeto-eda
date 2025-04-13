@@ -1,12 +1,10 @@
-import utils.*;
 import estructures.queue.Queue;
+import utils.InputFileReader;
 
 import java.util.Random;
 
-import estructures.graph.Graph;
 
-
-public class App {
+public class Application {
     public static void main(String[] args) {
         
         // Tudo isso abaixo é só teste
@@ -31,5 +29,8 @@ public class App {
         System.out.println(queue.pop());
 
         queue.printQueue();
+
+        InputFileReader.printInputFile();
+        InputFileReader.readSampleFile("src/resource/sample.txt");
     }
 }
