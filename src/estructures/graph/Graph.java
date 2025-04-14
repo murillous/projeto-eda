@@ -1,24 +1,33 @@
 package estructures.graph;
 
+import utils.GraphConstructor;
+
 public class Graph {
-    
+
+    private final boolean isDirected;
     private final int vertices;
     private final int[][] matrix;
 
-    public Graph(int vertices){
-        this.vertices = vertices;
+    public Graph(GraphConstructor graphConstructor){
+        isDirected = GraphConstructor.getIsDirected();
+        vertices = GraphConstructor.getVertices().size();
         matrix = new int[vertices][vertices];
     }
 
-    // Função para grafos não-dirigidos, por isso 1 nas duas posições
     public void addEdge(int source, int destination) {
         matrix[source][destination] = 1;
-        matrix[destination][source] = 1;
+
+        if(!isDirected) {
+            matrix[destination][source] = 1;
+        }
     }
 
     public void removeEdge(int source, int destination){
         matrix[source][destination] = 0;
-        matrix[destination][source] = 0;
+
+        if(!isDirected) {
+            matrix[destination][source] = 0;
+        }
     }
 
     public void viewGraph(){
@@ -28,5 +37,9 @@ public class Graph {
             }
             System.out.println();
         }
+    }
+
+    public int getVertices() {
+        return vertices;
     }
 }
