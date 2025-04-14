@@ -2,8 +2,8 @@ package estructures.graph;
 
 public class Graph {
     
-    private int vertices;
-    private int[][] matrix;
+    private final int vertices;
+    private final int[][] matrix;
 
     public Graph(int vertices){
         this.vertices = vertices;
