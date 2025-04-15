@@ -2,6 +2,8 @@ import estructures.graph.Graph;
 import utils.GraphConstructor;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Application {
@@ -11,11 +13,12 @@ public class Application {
         GraphConstructor graphConstructor = new GraphConstructor();
         graphConstructor.readFile(filepath);
 
-        System.out.println(GraphConstructor.getVertices());
-        System.out.println(GraphConstructor.getIsDirected());
-
+        System.out.println(graphConstructor.getVertices());
+        //System.out.println(graphConstructor.getIsDirected());
 
         Graph g = new Graph(graphConstructor);
-        System.out.println(g.getVertices());
+
+        g.viewGraph();
+
     }
 }

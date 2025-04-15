@@ -9,8 +9,8 @@ public class Graph {
     private final int[][] matrix;
 
     public Graph(GraphConstructor graphConstructor){
-        isDirected = GraphConstructor.getIsDirected();
-        vertices = GraphConstructor.getVertices().size();
+        isDirected = graphConstructor.getIsDirected();
+        vertices = graphConstructor.getVertices().size();
         matrix = new int[vertices][vertices];
     }
 
