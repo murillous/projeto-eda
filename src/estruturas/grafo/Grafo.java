@@ -8,12 +8,14 @@ import java.util.Map;
 public class Grafo {
 
     private final boolean ehDirecionado;
+
     private final int vertices;
     private final int[][] matrizAdj;
+    Map<String, Integer> verticeIndice;
 
     public Grafo(GrafoConstrutor grafoConstrutor){
         ehDirecionado = grafoConstrutor.obterEhDirecionado();
-        Map<String, Integer> verticeIndice = grafoConstrutor.obterVerticeIndice();
+        verticeIndice = grafoConstrutor.obterVerticeIndice();
         vertices = verticeIndice.size();
         matrizAdj = new int[vertices][vertices];
 
@@ -54,6 +56,24 @@ public class Grafo {
             }
             System.out.println();
         }
+    }
+
+    public int verticeGrau(String vertice){
+        try {
+            int indice = verticeIndice.get(vertice);
+            int grau = 0;
+            for(int i = 0; i < vertices; i++){
+                if(matrizAdj[indice][i] == 1){
+                    grau++;
+                }
+            }
+            System.out.println("O grau do vertice '" + vertice + "' é: " + grau);
+            return grau;
+        }
+        catch(NullPointerException e){
+            System.out.println("Esse vertice não existe");
+        }
+        return -1;
     }
 
     public int obterVertices() {
