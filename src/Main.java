@@ -14,7 +14,7 @@ public class Main {
         Grafo g = new Grafo(grafoConstrutor);
 
         g.mostrarGrafo();
-        g.verticeGrau("Z");
-
+        g.BuscaEmLargura("B");
+        g.verticeGrau("A");
     }
 }

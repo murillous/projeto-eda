@@ -1,13 +1,17 @@
-package estruturas.pilha;
+package estruturas.fila;
 
-public class Pilha<T> {
+public class Fila<T> {
     
     private No<T> inicio;
     private No<T> fim;
 
-    public Pilha(){
+    public Fila(){
         inicio = null;
         fim = null;
+    }
+
+    public boolean estaVazio(){
+        return inicio == null;
     }
 
     public void adicionar(T valor){
@@ -29,7 +33,7 @@ public class Pilha<T> {
         return current.obterValor();
     }
 
-    public void printQueue(){
+    public void exibirFila(){
         No<T> current = inicio;
         System.out.println("============QUEUE============");
         while(current != null){

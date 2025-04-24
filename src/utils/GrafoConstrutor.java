@@ -9,7 +9,7 @@ public class GrafoConstrutor {
     private boolean ehDirecionado;
     private final Set<String> vertices = new HashSet<>();
     private final List<String[]> arestas = new ArrayList<>();
-    private final Map<String,Integer> verticeIndice = new HashMap<>();
+    private final Map<String,Integer> verticeParaVertice = new HashMap<>();
 
     public void lerArquivo(String caminhoArquivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
@@ -31,7 +31,7 @@ public class GrafoConstrutor {
             }
             int indice = 0;
             for(String vertice: vertices){
-                verticeIndice.put(vertice,indice++);
+                verticeParaVertice.put(vertice,indice++);
             }
         } catch (IOException e) {
             System.out.println("Erro ao tentar ler o arquivo: \n" + e.getMessage());
@@ -50,7 +50,7 @@ public class GrafoConstrutor {
         return arestas;
     }
 
-    public Map<String, Integer> obterVerticeIndice() {
-        return verticeIndice;
+    public Map<String, Integer> obterVerticeParaIndice() {
+        return verticeParaVertice;
     }
 }

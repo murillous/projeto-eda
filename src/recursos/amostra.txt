@@ -1,7 +1,6 @@
 ND
 A,B
 B,C
-A,D
-B,D
-E,C
-B,B
+C,D
+D,E
+E,A

@@ -1,4 +1,4 @@
-package estruturas.pilha;
+package estruturas.fila;
 
 public class No<T> {
     
