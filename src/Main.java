@@ -9,11 +9,13 @@ public class Main {
 
         grafoConstrutor.lerArquivo(caminhoArquivo);
 
-        System.out.println(grafoConstrutor.obterVertices());
-
         Grafo g = new Grafo(grafoConstrutor);
 
         g.mostrarGrafo();
-        g.BuscaEmLargura("C");
+        g.buscarVizinhos("O");
+        g.verticeGrau("A");
+        g.ehAdjacente("A","G");
+//        g.buscaEmLargura("A");
+        g.visitarArestas();
     }
 }

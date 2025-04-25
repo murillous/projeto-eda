@@ -1,6 +1,5 @@
 package estruturas.grafo;
 
-import algoritmos.BFS;
 import utils.GrafoConstrutor;
 
 import java.util.ArrayList;
@@ -20,9 +19,7 @@ public class Grafo {
         verticeParaIndice = grafoConstrutor.obterVerticeParaIndice();
 
         indiceParaVertice = new ArrayList<>();
-        for(String vertice : verticeParaIndice.keySet()){
-            indiceParaVertice.add(vertice);
-        }
+        indiceParaVertice.addAll(verticeParaIndice.keySet());
 
         numVertices = verticeParaIndice.size();
         matrizAdj = new int[numVertices][numVertices];
@@ -40,7 +37,7 @@ public class Grafo {
         }
     }
 
-    public void adcionarAresta(int fonte, int destino) {
+    private void adcionarAresta(int fonte, int destino) {
             matrizAdj[fonte][destino] = 1;
 
             if(!ehDirecionado) {
@@ -48,12 +45,38 @@ public class Grafo {
             }
     }
 
-    public void mostrarGrafo(){
-        for(int i = 0; i < numVertices; i++){
-            for(int j = 0; j < numVertices; j++){
-                System.out.print(matrizAdj[i][j] + " ");
+    public void mostrarGrafo() {
+        System.out.print("    ");
+        for (String coluna : indiceParaVertice) {
+            System.out.printf("%4s", coluna);
+        }
+        System.out.println();
+
+        for (int i = 0; i < numVertices; i++) {
+            String rotuloLinha = indiceParaVertice.get(i);
+            System.out.printf("%4s", rotuloLinha);
+            for (int j = 0; j < numVertices; j++) {
+                System.out.printf("%4d", matrizAdj[i][j]);
             }
             System.out.println();
+        }
+    }
+
+    public boolean ehAdjacente(String vx, String vy){
+        if(!(verticeParaIndice.containsKey(vx) && verticeParaIndice.containsKey(vy))){
+            System.out.println("Um ou mais vertices não existem");
+            return false;
+        }
+        int primeiroVertice = verticeParaIndice.get(vx);
+        int segundoVertice = verticeParaIndice.get(vy);
+
+        if(matrizAdj[primeiroVertice][segundoVertice] == 1){
+            System.out.printf("O vertices %s e %s são adjacentes\n",vx,vy);
+            return true;
+        }
+        else {
+            System.out.printf("O vertices %s e %s não são adjacentes\n", vx, vy);
+            return false;
         }
     }
 
@@ -69,28 +92,66 @@ public class Grafo {
                 grau++;
             }
         }
-        System.out.println("O grau do vertice '" + vertice + "' é: " + grau);
+        System.out.printf("Grau do vertice %s: %d%n",vertice,grau);
         return grau;
     }
 
-    public void BuscaEmLargura(String verticeInicial){
+    public List<String> buscarVizinhos(String vx){
+        if(!(verticeParaIndice.containsKey(vx))){
+            System.out.printf("O vertice %s não existe",vx);
+            return null;
+        }
+        int indiceVx = verticeParaIndice.get(vx);
+        List<String> vizinhos = new ArrayList<>();
+
+        for(int i = 0; i < numVertices; i++){
+            if(matrizAdj[indiceVx][i] == 1){
+                vizinhos.add(indiceParaVertice.get(i));
+            }
+        }
+
+        System.out.printf("Os vizinhos do vertice %s são: ",vx);
+        for(String vertice: vizinhos){
+            System.out.print(vertice + " ");
+        }
+
+        System.out.println();
+        return vizinhos;
+    }
+
+    public List<String[]> visitarArestas(){
+        List<String[]> arestas = new ArrayList<>();
+        for(int i = 0; i < numVertices; i++){
+            for(int j = (ehDirecionado ? 0 : i) ; j < numVertices; j++){
+                if(matrizAdj[i][j] == 1){
+                    String fonte = indiceParaVertice.get(i);
+                    String destino = indiceParaVertice.get(j);
+                    System.out.printf("Visitando aresta entre %s e %s%n",fonte,destino);
+                    arestas.add(new String[]{fonte,destino});
+                }
+            }
+        }
+        return arestas;
+    }
+
+    public void buscaEmLargura(String verticeInicial){
         BFS bfs = new BFS(this);
         bfs.buscaEmLargura(verticeInicial);
     }
 
-    public int obterNumVertices() {
+    int obterNumVertices() {
         return numVertices;
     }
 
-    public Map<String, Integer> obterVerticeParaIndice() {
+    Map<String, Integer> obterVerticeParaIndice() {
         return verticeParaIndice;
     }
 
-    public int[][] obterMatrizAdj() {
+    int[][] obterMatrizAdj() {
         return matrizAdj;
     }
 
-    public List<String> obterIndiceParaVertice() {
+    List<String> obterIndiceParaVertice() {
         return indiceParaVertice;
     }
 }

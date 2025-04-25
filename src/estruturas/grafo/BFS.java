@@ -1,17 +1,16 @@
-package algoritmos;
+package estruturas.grafo;
 
 import estruturas.fila.Fila;
-import estruturas.grafo.Grafo;
 
 import java.util.List;
 import java.util.Map;
 
 public class BFS {
 
-    private int[][] matrizAdj;
-    private int numVertices;
-    private Map<String, Integer> verticeParaIndice;
-    private List<String> indiceParaVertice;
+    private final int[][] matrizAdj;
+    private final int numVertices;
+    private final Map<String, Integer> verticeParaIndice;
+    private final List<String> indiceParaVertice;
 
     public BFS(Grafo grafo){
         this.matrizAdj = grafo.obterMatrizAdj();

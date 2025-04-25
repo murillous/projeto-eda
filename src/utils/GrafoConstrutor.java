@@ -42,10 +42,6 @@ public class GrafoConstrutor {
         return ehDirecionado;
     }
 
-    public Set<String> obterVertices() {
-        return vertices;
-    }
-
     public List<String[]> obterArestas(){
         return arestas;
     }
