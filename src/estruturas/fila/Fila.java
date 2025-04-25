@@ -35,12 +35,12 @@ public class Fila<T> {
 
     public void exibirFila(){
         No<T> current = inicio;
-        System.out.println("============QUEUE============");
+
         while(current != null){
             System.out.print(current.obterValor() + " -> ");
             current = current.obterProximo();
         }
-        System.out.printf("VAZIO%n=============================%n");
+        System.out.printf("VAZIO%n");
     }
 
     public No<T> obterInicio() {

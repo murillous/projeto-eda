@@ -48,14 +48,6 @@ public class Grafo {
             }
     }
 
-    public void removerAresta(int fonte, int destino){
-        matrizAdj[fonte][destino] = 0;
-
-        if(!ehDirecionado) {
-            matrizAdj[destino][fonte] = 0;
-        }
-    }
-
     public void mostrarGrafo(){
         for(int i = 0; i < numVertices; i++){
             for(int j = 0; j < numVertices; j++){

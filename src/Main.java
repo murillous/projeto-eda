@@ -4,7 +4,7 @@ import utils.GrafoConstrutor;
 public class Main {
     public static void main(String[] args) {
 
-        String caminhoArquivo = "src/recursos/amostra.txt";
+        String caminhoArquivo = "src/recursos/entrada.txt";
         GrafoConstrutor grafoConstrutor = new GrafoConstrutor();
 
         grafoConstrutor.lerArquivo(caminhoArquivo);
@@ -14,7 +14,6 @@ public class Main {
         Grafo g = new Grafo(grafoConstrutor);
 
         g.mostrarGrafo();
-        g.BuscaEmLargura("B");
-        g.verticeGrau("A");
+        g.BuscaEmLargura("C");
     }
 }
