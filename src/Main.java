@@ -12,10 +12,10 @@ public class Main {
         Grafo g = new Grafo(grafoConstrutor);
 
         g.mostrarGrafo();
-        g.buscarVizinhos("O");
-        g.verticeGrau("A");
-        g.ehAdjacente("A","G");
-//        g.buscaEmLargura("A");
-        g.visitarArestas();
+//        g.buscarVizinhos("A");
+//        g.verticeGrau("A");
+//        g.ehAdjacente("A","B");
+        g.buscaEmLargura("A");
+//        g.visitarArestas();
     }
 }

@@ -26,26 +26,20 @@ public class BFS {
         }
         int vertice = verticeParaIndice.get(verticeInicial);
         boolean[] visitados = new boolean[numVertices];
-        int contadorVisitados = 0;
 
         visitados[vertice] = true;
-        contadorVisitados++;
         Fila<String> fila = new Fila<>();
         fila.adicionar(indiceParaVertice.get(vertice));
 
         System.out.println("A busca em largura vai começar pelo vertice " + verticeInicial);
 
         while(!fila.estaVazio()) {
-            if(contadorVisitados == numVertices){
-                System.out.println("Todos os vertices foram visitados");
-                return;
-            }
+
             int verticeAtual = verticeParaIndice.get(fila.retirar());
             System.out.println("Vertice atual: " + indiceParaVertice.get(verticeAtual));
             for(int i = 0; i < numVertices; i++){
                 if(matrizAdj[verticeAtual][i] == 1 && !visitados[i]){
                     visitados[i] = true;
-                    contadorVisitados++;
                     fila.adicionar(indiceParaVertice.get(i));
                 }
             }
