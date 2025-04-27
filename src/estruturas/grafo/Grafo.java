@@ -62,27 +62,29 @@ public class Grafo {
         }
     }
 
+    // TODO: Rever necessidade de retorno
     public boolean ehAdjacente(String vx, String vy){
         if(!(verticeParaIndice.containsKey(vx) && verticeParaIndice.containsKey(vy))){
-            System.out.println("Um ou mais vertices não existem");
+            System.out.println("\nUm ou mais vertices não existem\n");
             return false;
         }
         int primeiroVertice = verticeParaIndice.get(vx);
         int segundoVertice = verticeParaIndice.get(vy);
 
         if(matrizAdj[primeiroVertice][segundoVertice] == 1){
-            System.out.printf("O vertices %s e %s são adjacentes\n",vx,vy);
+            System.out.printf("\nOs vertices %s e %s são adjacentes\n\n",vx,vy);
             return true;
         }
         else {
-            System.out.printf("O vertices %s e %s não são adjacentes\n", vx, vy);
+            System.out.printf("\nOs vertices %s e %s não são adjacentes\n\n", vx, vy);
             return false;
         }
     }
 
+    // TODO: Rever necessidade de retorno
     public int verticeGrau(String vertice){
         if(!verticeParaIndice.containsKey(vertice)){
-            System.out.println("Esse vertice não existe");
+            System.out.println("\nEsse vertice não existe\n");
             return -1;
         }
         int indice = verticeParaIndice.get(vertice);
@@ -92,13 +94,14 @@ public class Grafo {
                 grau++;
             }
         }
-        System.out.printf("Grau do vertice %s: %d%n",vertice,grau);
+        System.out.printf("\nGrau do vertice %s: %d%n\n",vertice,grau);
         return grau;
     }
 
+    // TODO: Rever necessidade de retorno
     public List<String> buscarVizinhos(String vx){
         if(!(verticeParaIndice.containsKey(vx))){
-            System.out.printf("O vertice %s não existe",vx);
+            System.out.printf("\nO vertice %s não existe\n\n",vx);
             return null;
         }
         int indiceVx = verticeParaIndice.get(vx);
@@ -110,17 +113,20 @@ public class Grafo {
             }
         }
 
-        System.out.printf("Os vizinhos do vertice %s são: ",vx);
+        System.out.printf("\nOs vizinhos do vertice %s são: ",vx);
         for(String vertice: vizinhos){
             System.out.print(vertice + " ");
         }
 
-        System.out.println();
+        System.out.println("\n");
         return vizinhos;
     }
 
+    // TODO: Rever necessidade de retorno
     public List<String[]> visitarArestas(){
         List<String[]> arestas = new ArrayList<>();
+        System.out.println();
+
         for(int i = 0; i < numVertices; i++){
             for(int j = (ehDirecionado ? 0 : i) ; j < numVertices; j++){
                 if(matrizAdj[i][j] == 1){
@@ -131,6 +137,8 @@ public class Grafo {
                 }
             }
         }
+
+        System.out.println();
         return arestas;
     }
 

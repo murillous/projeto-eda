@@ -1,5 +1,6 @@
 import estruturas.grafo.Grafo;
 import utils.GrafoConstrutor;
+import utils.Menu;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,13 +10,9 @@ public class Main {
 
         grafoConstrutor.lerArquivo(caminhoArquivo);
 
-        Grafo g = new Grafo(grafoConstrutor);
+        Grafo grafo = new Grafo(grafoConstrutor);
 
-        g.mostrarGrafo();
-//        g.buscarVizinhos("A");
-//        g.verticeGrau("A");
-//        g.ehAdjacente("A","B");
-        g.buscaEmLargura("A");
-//        g.visitarArestas();
+        Menu menu = new Menu(grafo);
+        menu.mostrar_menu();
     }
 }
