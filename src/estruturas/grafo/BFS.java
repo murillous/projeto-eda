@@ -9,8 +9,8 @@ public class BFS {
 
     private final int[][] matrizAdj;
     private final int numVertices;
-    private final Map<String, Integer> verticeParaIndice;
-    private final List<String> indiceParaVertice;
+    private final Map<String, Vertice> verticeParaIndice;
+    private final List<Vertice> indiceParaVertice;
 
     public BFS(Grafo grafo){
         this.matrizAdj = grafo.obterMatrizAdj();
@@ -24,34 +24,34 @@ public class BFS {
             System.out.println("O vertice " + verticeInicial + " não existe");
             return;
         }
-        int vertice = verticeParaIndice.get(verticeInicial);
+        int vertice = verticeParaIndice.get(verticeInicial).obterIndice();
         boolean[] visitados = new boolean[numVertices];
 
         visitados[vertice] = true;
-        Fila<String> fila = new Fila<>();
-        fila.adicionar(indiceParaVertice.get(vertice));
+        Fila filaVertices = new Fila();
+        filaVertices.adicionar(indiceParaVertice.get(vertice));
 
         System.out.println("A busca em largura vai começar pelo vertice " + verticeInicial);
 
-        while(!fila.estaVazio()) {
+        while(!filaVertices.estaVazio()) {
 
-            int verticeAtual = verticeParaIndice.get(fila.retirar());
-            System.out.println("Vertice atual: " + indiceParaVertice.get(verticeAtual));
+            int verticeAtual = filaVertices.retirar().obterIndice();
+            System.out.println("Vertice atual: " + indiceParaVertice.get(verticeAtual).obterVertice());
             for(int i = 0; i < numVertices; i++){
                 if(matrizAdj[verticeAtual][i] == 1 && !visitados[i]){
                     visitados[i] = true;
-                    fila.adicionar(indiceParaVertice.get(i));
+                    filaVertices.adicionar(indiceParaVertice.get(i));
                 }
             }
 
             System.out.print("Vertices visitados: ");
             for(int i = 0; i < numVertices; i++){
                 if(visitados[i]){
-                    System.out.print(indiceParaVertice.get(i) + " ");
+                    System.out.print(indiceParaVertice.get(i).obterVertice() + " ");
                 }
             }
             System.out.printf("%nFila: ");
-            fila.exibirFila();
+            filaVertices.exibirFila();
         }
         System.out.println();
     }

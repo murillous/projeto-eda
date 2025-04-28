@@ -1,4 +1,4 @@
-Coisas feitas até agora:
+# Coisas feitas até agora
 
 - Matriz de adjacência
 - Fila (pra usar no algoritmo de BFS)

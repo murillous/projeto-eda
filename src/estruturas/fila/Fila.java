@@ -1,9 +1,11 @@
 package estruturas.fila;
 
-public class Fila<T> {
+import estruturas.grafo.Vertice;
+
+public class Fila {
     
-    private No<T> inicio;
-    private No<T> fim;
+    private No<Vertice> inicio;
+    private No<Vertice> fim;
 
     public Fila(){
         inicio = null;
@@ -14,8 +16,8 @@ public class Fila<T> {
         return inicio == null;
     }
 
-    public void adicionar(T valor){
-        No<T> novoNo = new No<>(valor);
+    public void adicionar(Vertice valor){
+        No<Vertice> novoNo = new No<>(valor);
         if(inicio == null){
             inicio = novoNo;
             fim = novoNo;
@@ -27,27 +29,27 @@ public class Fila<T> {
 
     }
 
-    public T retirar(){
-        No<T> current = inicio;
+    public Vertice retirar(){
+        No<Vertice> current = inicio;
         inicio = inicio.obterProximo();
         return current.obterValor();
     }
 
     public void exibirFila(){
-        No<T> current = inicio;
+        No<Vertice> current = inicio;
 
         while(current != null){
-            System.out.print(current.obterValor() + " -> ");
+            System.out.print(current.obterValor().obterVertice() + " -> ");
             current = current.obterProximo();
         }
         System.out.printf("VAZIO%n");
     }
 
-    public No<T> obterInicio() {
+    public No<Vertice> obterInicio() {
         return inicio;
     }
 
-    public No<T> obterFim() {
+    public No<Vertice> obterFim() {
         return fim;
     }
 

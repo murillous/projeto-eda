@@ -11,15 +11,15 @@ public class Grafo {
     private final boolean ehDirecionado;
     private final int numVertices;
     private final int[][] matrizAdj;
-    private final Map<String, Integer> verticeParaIndice;
-    private final List<String> indiceParaVertice;
+    private final Map<String, Vertice> verticeParaIndice;
+    private final List<Vertice> indiceParaVertice;
 
     public Grafo(GrafoConstrutor grafoConstrutor){
         ehDirecionado = grafoConstrutor.obterEhDirecionado();
         verticeParaIndice = grafoConstrutor.obterVerticeParaIndice();
 
         indiceParaVertice = new ArrayList<>();
-        indiceParaVertice.addAll(verticeParaIndice.keySet());
+        indiceParaVertice.addAll(verticeParaIndice.values());
 
         numVertices = verticeParaIndice.size();
         matrizAdj = new int[numVertices][numVertices];
@@ -30,8 +30,8 @@ public class Grafo {
             String primeiroVertice = aresta[0];
             String segundoVertice = aresta[1];
 
-            int fonte = verticeParaIndice.get(primeiroVertice);
-            int destino = verticeParaIndice.get(segundoVertice);
+            int fonte = verticeParaIndice.get(primeiroVertice).obterIndice();
+            int destino = verticeParaIndice.get(segundoVertice).obterIndice();
 
             adcionarAresta(fonte, destino);
         }
@@ -47,13 +47,13 @@ public class Grafo {
 
     public void mostrarGrafo() {
         System.out.print("    ");
-        for (String coluna : indiceParaVertice) {
-            System.out.printf("%4s", coluna);
+        for (Vertice coluna : indiceParaVertice) {
+            System.out.printf("%4s", coluna.obterVertice());
         }
         System.out.println();
 
         for (int i = 0; i < numVertices; i++) {
-            String rotuloLinha = indiceParaVertice.get(i);
+            String rotuloLinha = indiceParaVertice.get(i).obterVertice();
             System.out.printf("%4s", rotuloLinha);
             for (int j = 0; j < numVertices; j++) {
                 System.out.printf("%4d", matrizAdj[i][j]);
@@ -68,8 +68,8 @@ public class Grafo {
             System.out.println("\nUm ou mais vertices não existem\n");
             return false;
         }
-        int primeiroVertice = verticeParaIndice.get(vx);
-        int segundoVertice = verticeParaIndice.get(vy);
+        int primeiroVertice = verticeParaIndice.get(vx).obterIndice();
+        int segundoVertice = verticeParaIndice.get(vy).obterIndice();
 
         if(matrizAdj[primeiroVertice][segundoVertice] == 1){
             System.out.printf("\nOs vertices %s e %s são adjacentes\n\n",vx,vy);
@@ -87,7 +87,7 @@ public class Grafo {
             System.out.println("\nEsse vertice não existe\n");
             return -1;
         }
-        int indice = verticeParaIndice.get(vertice);
+        int indice = verticeParaIndice.get(vertice).obterIndice();
         int grau = 0;
         for(int i = 0; i < numVertices; i++){
             if(matrizAdj[indice][i] == 1){
@@ -99,13 +99,13 @@ public class Grafo {
     }
 
     // TODO: Rever necessidade de retorno
-    public List<String> buscarVizinhos(String vx){
+    public List<Vertice> buscarVizinhos(String vx){
         if(!(verticeParaIndice.containsKey(vx))){
             System.out.printf("\nO vertice %s não existe\n\n",vx);
             return null;
         }
-        int indiceVx = verticeParaIndice.get(vx);
-        List<String> vizinhos = new ArrayList<>();
+        int indiceVx = verticeParaIndice.get(vx).obterIndice();
+        List<Vertice> vizinhos = new ArrayList<>();
 
         for(int i = 0; i < numVertices; i++){
             if(matrizAdj[indiceVx][i] == 1){
@@ -114,8 +114,8 @@ public class Grafo {
         }
 
         System.out.printf("\nOs vizinhos do vertice %s são: ",vx);
-        for(String vertice: vizinhos){
-            System.out.print(vertice + " ");
+        for(Vertice vertice: vizinhos){
+            System.out.print(vertice.obterVertice() + " ");
         }
 
         System.out.println("\n");
@@ -130,8 +130,8 @@ public class Grafo {
         for(int i = 0; i < numVertices; i++){
             for(int j = (ehDirecionado ? 0 : i) ; j < numVertices; j++){
                 if(matrizAdj[i][j] == 1){
-                    String fonte = indiceParaVertice.get(i);
-                    String destino = indiceParaVertice.get(j);
+                    String fonte = indiceParaVertice.get(i).obterVertice();
+                    String destino = indiceParaVertice.get(j).obterVertice();
                     System.out.printf("Visitando aresta entre %s e %s%n",fonte,destino);
                     arestas.add(new String[]{fonte,destino});
                 }
@@ -151,7 +151,7 @@ public class Grafo {
         return numVertices;
     }
 
-    Map<String, Integer> obterVerticeParaIndice() {
+    Map<String, Vertice> obterVerticeParaIndice() {
         return verticeParaIndice;
     }
 
@@ -159,7 +159,7 @@ public class Grafo {
         return matrizAdj;
     }
 
-    List<String> obterIndiceParaVertice() {
+    List<Vertice> obterIndiceParaVertice() {
         return indiceParaVertice;
     }
 }
