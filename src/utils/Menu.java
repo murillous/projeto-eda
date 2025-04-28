@@ -18,7 +18,8 @@ public class Menu {
 
         // variáveis utilitárias
         String vertice1, vertice2, vertice;
-        do {
+
+        while (true) {
             System.out.println("Escolha uma opção:\n");
             System.out.println("1) - Verificar adjacência entre vértices");
             System.out.println("2) - Calcular grau do vértice");
@@ -65,6 +66,6 @@ public class Menu {
                default:
                    System.out.println("\nOpção inválida! Tente novamente.\n");
            }
-        } while (escolha != 0);
+        }
     }
 }
