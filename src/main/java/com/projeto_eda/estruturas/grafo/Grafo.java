@@ -9,9 +9,7 @@ import java.util.Map;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.graph.Node;
-import org.graphstream.ui.view.Viewer;
-import org.graphstream.ui.view.Viewer.ThreadingModel;
-import org.graphstream.ui.view.View;
+
 
 public class Grafo {
 
@@ -68,31 +66,27 @@ public class Grafo {
             System.out.println();
         }
     }
-
-    // TODO: Rever necessidade de retorno
-    public boolean ehAdjacente(String vx, String vy){
+    
+    public void ehAdjacente(String vx, String vy){
         if(!(verticeParaIndice.containsKey(vx) && verticeParaIndice.containsKey(vy))){
             System.out.println("\nUm ou mais vertices não existem\n");
-            return false;
+            return;
         }
         int primeiroVertice = verticeParaIndice.get(vx).obterIndice();
         int segundoVertice = verticeParaIndice.get(vy).obterIndice();
 
         if(matrizAdj[primeiroVertice][segundoVertice] == 1){
             System.out.printf("\nOs vertices %s e %s são adjacentes\n\n",vx,vy);
-            return true;
         }
         else {
             System.out.printf("\nOs vertices %s e %s não são adjacentes\n\n", vx, vy);
-            return false;
         }
     }
 
-    // TODO: Rever necessidade de retorno
-    public int verticeGrau(String vertice){
+    public void verticeGrau(String vertice){
         if(!verticeParaIndice.containsKey(vertice)){
             System.out.println("\nEsse vertice não existe\n");
-            return -1;
+            return;
         }
         int indice = verticeParaIndice.get(vertice).obterIndice();
         int grau = 0;
@@ -102,14 +96,12 @@ public class Grafo {
             }
         }
         System.out.printf("\nGrau do vertice %s: %d%n\n",vertice,grau);
-        return grau;
     }
-
-    // TODO: Rever necessidade de retorno
-    public List<Vertice> buscarVizinhos(String vx){
+    
+    public void buscarVizinhos(String vx){
         if(!(verticeParaIndice.containsKey(vx))){
             System.out.printf("\nO vertice %s não existe\n\n",vx);
-            return null;
+            return;
         }
         int indiceVx = verticeParaIndice.get(vx).obterIndice();
         List<Vertice> vizinhos = new ArrayList<>();
@@ -126,27 +118,22 @@ public class Grafo {
         }
 
         System.out.println("\n");
-        return vizinhos;
     }
 
-    // TODO: Rever necessidade de retorno
-    public List<String[]> visitarArestas(){
-        List<String[]> arestas = new ArrayList<>();
+    public void visitarArestas() {
         System.out.println();
 
-        for(int i = 0; i < numVertices; i++){
-            for(int j = (ehDirecionado ? 0 : i) ; j < numVertices; j++){
-                if(matrizAdj[i][j] == 1){
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = (ehDirecionado ? 0 : i); j < numVertices; j++) {
+                if (matrizAdj[i][j] == 1) {
                     String fonte = indiceParaVertice.get(i).obterVertice();
                     String destino = indiceParaVertice.get(j).obterVertice();
-                    System.out.printf("Visitando aresta entre %s e %s%n",fonte,destino);
-                    arestas.add(new String[]{fonte,destino});
+                    System.out.printf("Visitando aresta entre %s e %s%n", fonte, destino);
                 }
             }
         }
 
         System.out.println();
-        return arestas;
     }
 
     public void buscaEmLargura(String verticeInicial){
@@ -186,7 +173,7 @@ public class Grafo {
         System.out.println();
     }
 
-    public boolean grafoDuasCores(){
+    public void grafoDuasCores(){
 
         for(Vertice v: indiceParaVertice){
             v.definirCor(-1);
@@ -209,17 +196,15 @@ public class Grafo {
                     }
                     else if(verticeAtual.obterCor() == vi.obterCor()){
                         System.out.printf("%s e %s são vertices adjacentes que possuem a mesma cor%n", verticeAtual.obterVertice(), vi.obterVertice());
-                        return false;
+                        return;
                     }
                 }
             }
         }
         System.out.println("O grafo pode ser colorido com duas cores");
-        return true;
     }
 
     public void visualizarGrafoUI() {
-        try {
             System.setProperty("org.graphstream.ui", "swing");
 
             Graph graph = new SingleGraph("Visualização do Grafo");
@@ -267,28 +252,8 @@ public class Grafo {
                 }
             }
 
-            Viewer viewer = graph.display();
+            graph.display();
 
             System.out.println("Grafo exibido com sucesso. Feche a janela para voltar ao menu principal.");
-
-        } catch (Exception e) {
-            System.err.println("Erro ao exibir o grafo: " + e.getMessage());
-        }
-    }
-
-    int obterNumVertices() {
-        return numVertices;
-    }
-
-    Map<String, Vertice> obterVerticeParaIndice() {
-        return verticeParaIndice;
-    }
-
-    int[][] obterMatrizAdj() {
-        return matrizAdj;
-    }
-
-    List<Vertice> obterIndiceParaVertice() {
-        return indiceParaVertice;
     }
 }

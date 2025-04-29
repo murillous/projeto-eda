@@ -21,6 +21,4 @@ public class Vertice {
     public void definirCor(int cor){this.cor = cor;}
 
     public int obterCor(){return cor;}
-
-    public boolean estaColorido(){return cor != -1;}
 }

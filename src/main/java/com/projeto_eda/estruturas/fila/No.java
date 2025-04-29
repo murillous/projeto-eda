@@ -10,16 +10,8 @@ public class No<T> {
         proximo = null;
     }
 
-    public No(T valor, No<T> proximo){
-        this.valor = valor;
-        this.proximo = proximo;
-    }
-
     public T obterValor() {
         return valor;
-    }
-    public void definirValor (T valor) {
-        this.valor = valor;
     }
     public No<T> obterProximo() {
         return proximo;

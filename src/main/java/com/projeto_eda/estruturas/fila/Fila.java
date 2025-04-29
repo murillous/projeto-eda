@@ -45,12 +45,4 @@ public class Fila {
         System.out.printf("VAZIO%n");
     }
 
-    public No<Vertice> obterInicio() {
-        return inicio;
-    }
-
-    public No<Vertice> obterFim() {
-        return fim;
-    }
-
 }
