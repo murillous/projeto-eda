@@ -50,33 +50,40 @@ public class Menu {
                    vertice2 = scanner.next();
 
                    grafo.ehAdjacente(vertice1, vertice2);
+                   System.out.println();
                    break;
                case 2:
                    System.out.print("Informe o vértice cujo o grau você deseja calcular: ");
                    vertice = scanner.next();
 
                    grafo.verticeGrau(vertice);
+                   System.out.println();
                    break;
                case 3:
                    System.out.print("Informe o vértice cujo os vizinhos você deseja buscar: ");
                    vertice = scanner.next();
 
                    grafo.buscarVizinhos(vertice);
+                   System.out.println();
                    break;
                case 4:
                    grafo.visitarArestas();
+                   System.out.println();
                    break;
                case 5:
                    System.out.print("Informe o vértice inicial: ");
                    vertice = scanner.next();
 
                    grafo.buscaEmLargura(vertice);
+                   System.out.println();
                    break;
                case 6:
                    grafo.grafoDuasCores();
+                   System.out.println();
                    break;
                case 7:
                    grafo.mostrarGrafo();
+                   System.out.println();
                    break;
                default:
                    System.out.println("\nOpção inválida! Tente novamente.\n");

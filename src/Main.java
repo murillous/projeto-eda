@@ -2,10 +2,17 @@ import estruturas.grafo.Grafo;
 import utils.GrafoConstrutor;
 import utils.Menu;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        String caminhoArquivo = "src/recursos/entrada.txt";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o caminho do arquivo ");
+        System.out.printf("%n--> ");
+        String caminhoArquivo = scanner.nextLine();
+        System.out.println();
+
         GrafoConstrutor grafoConstrutor = new GrafoConstrutor();
 
         grafoConstrutor.lerArquivo(caminhoArquivo);
