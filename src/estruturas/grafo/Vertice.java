@@ -3,7 +3,7 @@ package estruturas.grafo;
 public class Vertice {
     private final String vertice;
     private final int indice;
-    private boolean colorido = false;
+    private int cor = -1;
 
     public Vertice(String vertice, int indice){
         this.vertice = vertice;
@@ -18,12 +18,9 @@ public class Vertice {
         return indice;
     }
 
-    public boolean ehColorido(){
-        return colorido;
-    }
+    public void definirCor(int cor){this.cor = cor;}
 
-    public void definirEhColorido(boolean colorido){
-        this.colorido = colorido;
-    }
+    public int obterCor(){return cor;}
 
+    public boolean estaColorido(){return cor != -1;}
 }

@@ -1,5 +1,6 @@
 package estruturas.grafo;
 
+import estruturas.fila.Fila;
 import utils.GrafoConstrutor;
 
 import java.util.ArrayList;
@@ -143,8 +144,72 @@ public class Grafo {
     }
 
     public void buscaEmLargura(String verticeInicial){
-        BFS bfs = new BFS(this);
-        bfs.buscaEmLargura(verticeInicial);
+        if(!verticeParaIndice.containsKey(verticeInicial)){
+            System.out.println("O vertice " + verticeInicial + " não existe");
+            return;
+        }
+        int vertice = verticeParaIndice.get(verticeInicial).obterIndice();
+        boolean[] visitados = new boolean[numVertices];
+
+        visitados[vertice] = true;
+        Fila filaVertices = new Fila();
+        filaVertices.adicionar(indiceParaVertice.get(vertice));
+
+        System.out.println("A busca em largura vai começar pelo vertice " + verticeInicial);
+
+        while(!filaVertices.estaVazio()) {
+
+            int verticeAtual = filaVertices.retirar().obterIndice();
+            System.out.println("Vertice atual: " + indiceParaVertice.get(verticeAtual).obterVertice());
+            for(int i = 0; i < numVertices; i++){
+                if(matrizAdj[verticeAtual][i] == 1 && !visitados[i]){
+                    visitados[i] = true;
+                    filaVertices.adicionar(indiceParaVertice.get(i));
+                }
+            }
+
+            System.out.print("Vertices visitados: ");
+            for(int i = 0; i < numVertices; i++){
+                if(visitados[i]){
+                    System.out.print(indiceParaVertice.get(i).obterVertice() + " ");
+                }
+            }
+            System.out.printf("%nFila: ");
+            filaVertices.exibirFila();
+        }
+        System.out.println();
+    }
+
+    public boolean grafoDuasCores(){
+
+        for(Vertice v: indiceParaVertice){
+            v.definirCor(-1);
+        }
+
+        int verticeInicial = 0;
+        indiceParaVertice.get(0).definirCor(0);
+        Fila fila = new Fila();
+        fila.adicionar(indiceParaVertice.get(verticeInicial));
+
+        while(!fila.estaVazio()){
+            int indiceVerticeAtual = fila.retirar().obterIndice();
+            Vertice verticeAtual = indiceParaVertice.get(indiceVerticeAtual);
+            for(int i = 0; i < numVertices; i++){
+                Vertice vi = indiceParaVertice.get(i);
+                if(matrizAdj[indiceVerticeAtual][i] == 1){
+                    if(vi.obterCor() == -1){
+                        vi.definirCor(1 - verticeAtual.obterCor());
+                        fila.adicionar(vi);
+                    }
+                    else if(verticeAtual.obterCor() == vi.obterCor()){
+                        System.out.printf("%s e %s são vertices adjacentes que possuem a mesma cor%n", verticeAtual.obterVertice(), vi.obterVertice());
+                        return false;
+                    }
+                }
+            }
+        }
+        System.out.println("O grafo pode ser colorido com duas cores");
+        return true;
     }
 
     int obterNumVertices() {

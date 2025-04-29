@@ -25,6 +25,9 @@ public class Menu {
             System.out.println("2) - Calcular grau do vértice");
             System.out.println("3) - Buscar vizinhos do vértice");
             System.out.println("4) - Visitar todas as arestas do grafo");
+            System.out.println("5) - Fazer busca em largura");
+            System.out.println("6) - Verifcar se é bipartido");
+            System.out.println("7) - Exibir matriz de adjacência");
             System.out.println("0) - Sair");
 
             try {
@@ -62,6 +65,18 @@ public class Menu {
                    break;
                case 4:
                    grafo.visitarArestas();
+                   break;
+               case 5:
+                   System.out.print("Informe o vértice inicial: ");
+                   vertice = scanner.next();
+
+                   grafo.buscaEmLargura(vertice);
+                   break;
+               case 6:
+                   grafo.grafoDuasCores();
+                   break;
+               case 7:
+                   grafo.mostrarGrafo();
                    break;
                default:
                    System.out.println("\nOpção inválida! Tente novamente.\n");
