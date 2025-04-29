@@ -1,6 +1,6 @@
-package utils;
+package com.projeto_eda.utils;
 
-import estruturas.grafo.Grafo;
+import com.projeto_eda.estruturas.grafo.Grafo;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,6 +28,7 @@ public class Menu {
             System.out.println("5) - Fazer busca em largura");
             System.out.println("6) - Verifcar se é bipartido");
             System.out.println("7) - Exibir matriz de adjacência");
+            System.out.println("8) - Exibir grafo com UI");
             System.out.println("0) - Sair");
 
             try {
@@ -84,6 +85,10 @@ public class Menu {
                case 7:
                    grafo.mostrarGrafo();
                    System.out.println();
+                   break;
+               case 8:
+                   grafo.grafoDuasCores();
+                   grafo.visualizarGrafoUI();
                    break;
                default:
                    System.out.println("\nOpção inválida! Tente novamente.\n");

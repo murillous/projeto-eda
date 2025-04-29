@@ -1,6 +1,6 @@
-package estruturas.fila;
+package com.projeto_eda.estruturas.fila;
 
-import estruturas.grafo.Vertice;
+import com.projeto_eda.estruturas.grafo.Vertice;
 
 public class Fila {
     

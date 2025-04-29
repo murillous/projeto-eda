@@ -1,10 +1,10 @@
-package utils;
+package com.projeto_eda.utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import estruturas.grafo.Vertice;
+import com.projeto_eda.estruturas.grafo.Vertice;
 
 public class GrafoConstrutor {
 

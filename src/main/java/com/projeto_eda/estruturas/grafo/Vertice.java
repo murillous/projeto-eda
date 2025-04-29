@@ -1,4 +1,4 @@
-package estruturas.grafo;
+package com.projeto_eda.estruturas.grafo;
 
 public class Vertice {
     private final String vertice;

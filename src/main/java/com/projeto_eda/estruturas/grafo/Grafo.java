@@ -1,11 +1,17 @@
-package estruturas.grafo;
+package com.projeto_eda.estruturas.grafo;
 
-import estruturas.fila.Fila;
-import utils.GrafoConstrutor;
+import com.projeto_eda.estruturas.fila.Fila;
+import com.projeto_eda.utils.GrafoConstrutor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.Node;
+import org.graphstream.ui.view.Viewer;
+import org.graphstream.ui.view.Viewer.ThreadingModel;
+import org.graphstream.ui.view.View;
 
 public class Grafo {
 
@@ -210,6 +216,64 @@ public class Grafo {
         }
         System.out.println("O grafo pode ser colorido com duas cores");
         return true;
+    }
+
+    public void visualizarGrafoUI() {
+        try {
+            System.setProperty("org.graphstream.ui", "swing");
+
+            Graph graph = new SingleGraph("Visualização do Grafo");
+
+            graph.setAttribute("ui.quality");
+            graph.setAttribute("ui.antialias");
+
+            graph.setAttribute("ui.stylesheet",
+                    "node {" +
+                            "   size: 30px;" +
+                            "   text-alignment: center;" +
+                            "   text-size: 14px;" +
+                            "   text-color: black;" +
+                            "   text-background-mode: rounded-box;" +
+                            "   text-background-color: white;" +
+                            "   text-padding: 5px, 4px;" +
+                            "}" +
+                            "edge {" +
+                            "   arrow-size: 12px, 6px;" +
+                            "   text-alignment: center;" +
+                            "   text-background-mode: rounded-box;" +
+                            "   text-background-color: white;" +
+                            "   text-padding: 5px, 4px;" +
+                            "}"
+            );
+
+            for (Vertice v : indiceParaVertice) {
+                Node node = graph.addNode(v.obterVertice());
+                node.setAttribute("ui.label", v.obterVertice());
+
+                if (v.obterCor() != -1) {
+                    String cor = v.obterCor() == 0 ? "red" : "blue";
+                    node.setAttribute("ui.style", "fill-color: " + cor + ";");
+                }
+            }
+
+            for (int i = 0; i < numVertices; i++) {
+                for (int j = (ehDirecionado ? 0 : i + 1); j < numVertices; j++) {
+                    if (matrizAdj[i][j] == 1) {
+                        String id1 = indiceParaVertice.get(i).obterVertice();
+                        String id2 = indiceParaVertice.get(j).obterVertice();
+                        String edgeId = id1 + "-" + id2;
+                        graph.addEdge(edgeId, id1, id2, ehDirecionado);
+                    }
+                }
+            }
+
+            Viewer viewer = graph.display();
+
+            System.out.println("Grafo exibido com sucesso. Feche a janela para voltar ao menu principal.");
+
+        } catch (Exception e) {
+            System.err.println("Erro ao exibir o grafo: " + e.getMessage());
+        }
     }
 
     int obterNumVertices() {

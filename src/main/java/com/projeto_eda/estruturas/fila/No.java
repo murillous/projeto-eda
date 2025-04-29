@@ -1,4 +1,4 @@
-package estruturas.fila;
+package com.projeto_eda.estruturas.fila;
 
 public class No<T> {
     

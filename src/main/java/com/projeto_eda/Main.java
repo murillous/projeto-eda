@@ -1,6 +1,8 @@
-import estruturas.grafo.Grafo;
-import utils.GrafoConstrutor;
-import utils.Menu;
+package com.projeto_eda;
+
+import com.projeto_eda.estruturas.grafo.Grafo;
+import com.projeto_eda.utils.GrafoConstrutor;
+import com.projeto_eda.utils.Menu;
 
 import java.util.Scanner;
 
