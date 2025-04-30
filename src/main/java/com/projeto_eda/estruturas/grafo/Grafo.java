@@ -68,6 +68,8 @@ public class Grafo {
     }
     
     public void ehAdjacente(String vx, String vy){
+        vx = vx.toUpperCase();
+        vy = vy.toUpperCase();
         if(!(verticeParaIndice.containsKey(vx) && verticeParaIndice.containsKey(vy))){
             System.out.println("\nUm ou mais vertices não existem\n");
             return;
@@ -84,12 +86,27 @@ public class Grafo {
     }
 
     public void verticeGrau(String vertice){
+        vertice = vertice.toUpperCase();
         if(!verticeParaIndice.containsKey(vertice)){
             System.out.println("\nEsse vertice não existe\n");
             return;
         }
         int indice = verticeParaIndice.get(vertice).obterIndice();
         int grau = 0;
+        int grauSaida = 0;
+        int grauEntrada = 0;
+        if(ehDirecionado) {
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdj[indice][i] == 1) {
+                    grauSaida++;
+                }
+                if (matrizAdj[i][indice] == 1) {
+                    grauEntrada++;
+                }
+            }
+            System.out.printf("No vertice %s:\n--> Grau de saida: %d\n--> Grau de entrada\n\n",vertice,grauSaida,grauEntrada);
+            return;
+        }
         for(int i = 0; i < numVertices; i++){
             if(matrizAdj[indice][i] == 1){
                 grau++;
@@ -99,6 +116,7 @@ public class Grafo {
     }
     
     public void buscarVizinhos(String vx){
+        vx = vx.toUpperCase();
         if(!(verticeParaIndice.containsKey(vx))){
             System.out.printf("\nO vertice %s não existe\n\n",vx);
             return;
@@ -137,6 +155,7 @@ public class Grafo {
     }
 
     public void buscaEmLargura(String verticeInicial){
+        verticeInicial = verticeInicial.toUpperCase();
         if(!verticeParaIndice.containsKey(verticeInicial)){
             System.out.println("O vertice " + verticeInicial + " não existe");
             return;

@@ -18,12 +18,12 @@ public class GrafoConstrutor {
             String linha;
 
             while ((linha = br.readLine()) != null) {
-                if(linha.trim().equalsIgnoreCase("D")) ehDirecionado = true;
+                if(linha.trim().toUpperCase().equalsIgnoreCase("D")) ehDirecionado = true;
                 if (!linha.contains(",")) continue;
 
                 String[] campos = linha.split(",");
-                String primeiroVertice = campos[0];
-                String segundoVertice = campos[1];
+                String primeiroVertice = campos[0].trim().toUpperCase();
+                String segundoVertice = campos[1].trim().toUpperCase();
 
                 arestas.add(new String[]{primeiroVertice, segundoVertice});
 
