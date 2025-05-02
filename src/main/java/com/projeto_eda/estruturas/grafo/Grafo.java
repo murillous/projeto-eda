@@ -236,21 +236,22 @@ public class Grafo {
                             "   size: 30px;" +
                             "   text-alignment: center;" +
                             "   text-size: 14px;" +
-                            "   text-color: black;" +
-                            "   text-background-mode: rounded-box;" +
-                            "   text-background-color: white;" +
+                            "   text-color: white;" +
+                            "   text-style: bold;" +
+                            "   text-background-mode: none;" +
                             "   text-padding: 5px, 4px;" +
                             "}" +
                             "edge {" +
                             "   arrow-size: 12px, 6px;" +
                             "   text-alignment: center;" +
+                            "   text-style: bold;" +
                             "   text-background-mode: rounded-box;" +
                             "   text-background-color: white;" +
                             "   text-padding: 5px, 4px;" +
                             "}"
             );
 
-            for (Vertice v : indiceParaVertice) {
+        for (Vertice v : indiceParaVertice) {
                 Node node = graph.addNode(v.obterVertice());
                 node.setAttribute("ui.label", v.obterVertice());
 
