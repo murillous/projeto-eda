@@ -3,5 +3,4 @@ bin/
 .idea/
 projeto-eda.iml
 out/
-.mvn/
 target/
