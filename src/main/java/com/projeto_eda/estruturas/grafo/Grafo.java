@@ -104,7 +104,7 @@ public class Grafo {
                     grauEntrada++;
                 }
             }
-            System.out.printf("No vertice %s:\n--> Grau de saida: %d\n--> Grau de entrada\n\n",vertice,grauSaida,grauEntrada);
+            System.out.printf("No vertice %s:\n--> Grau de saida: %d\n--> Grau de entrada: %d\n\n",vertice,grauSaida,grauEntrada);
             return;
         }
         for(int i = 0; i < numVertices; i++){
